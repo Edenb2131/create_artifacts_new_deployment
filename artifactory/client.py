@@ -41,7 +41,12 @@ class ArtifactoryClient:
             return True
         try:
             resp = self._session.get(url, timeout=self._config.request_timeout)
-            return resp.status_code == 200
+            if resp.status_code == 401:
+                raise ArtifactoryError(
+                    "Artifactory returned 401 Unauthorized — check your username and password in credentials.py",
+                    status_code=401,
+                )
+            return True  # any other HTTP response means the server is up
         except requests.RequestException as e:
             self._log.error("Connectivity check failed: %s", e)
             return False

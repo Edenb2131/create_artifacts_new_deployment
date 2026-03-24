@@ -256,7 +256,7 @@ class WorkflowRunner:
                     self._log.debug("Removed directory: %s", path)
             except OSError as e:
                 self._log.warning("Could not remove %s: %s", path, e)
-        for path in ["package-lock.json", "package.json", "requirements.txt", ".npmrc"]:
+        for path in ["package-lock.json", "package.json", ".npmrc"]:
             try:
                 if os.path.isfile(path):
                     os.remove(path)
