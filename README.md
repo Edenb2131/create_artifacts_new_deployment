@@ -94,9 +94,9 @@ cp credentials.example.py credentials.py
 Open `credentials.py` and set your Artifactory details:
 
 ```python
-ARTIFACTORY_URL      = "http://172.16.1.128:8082"
+ARTIFACTORY_URL      = "http://<RT_URL>"
 ARTIFACTORY_USERNAME = "admin"
-ARTIFACTORY_PASSWORD = "Password1!"
+ARTIFACTORY_PASSWORD = "password"
 ```
 
 That's it — the script will automatically load these values on every run.
@@ -108,9 +108,9 @@ That's it — the script will automatically load these values on every run.
 If you prefer not to write credentials to a file at all, export them as environment variables instead. These take priority over `credentials.py`.
 
 ```bash
-export ARTIFACTORY_URL="http://172.16.1.128:8082"
+export ARTIFACTORY_URL="http://<RT_URL>"
 export ARTIFACTORY_USERNAME="admin"
-export ARTIFACTORY_PASSWORD="Password1!"
+export ARTIFACTORY_PASSWORD="password"
 ```
 
 ---
@@ -120,7 +120,7 @@ export ARTIFACTORY_PASSWORD="Password1!"
 URL and username can also be passed as flags (password must still come from `credentials.py` or the env var):
 
 ```bash
-python main.py --url http://172.16.1.128:8082 --username admin
+python main.py --url http://<RT_URL> --username admin
 ```
 
 ---
@@ -311,7 +311,7 @@ Expected output:
 2026-03-24 10:00:01 [INFO    ] workflow: DRY RUN mode active — no changes will be made.
 2026-03-24 10:00:01 [INFO    ] workflow: Build number: 1742810401
 2026-03-24 10:00:01 [INFO    ] workflow: Running pre-flight checks...
-2026-03-24 10:00:01 [INFO    ] artifactory.client: DRY RUN: would GET http://172.16.1.128:8082/artifactory/api/system/ping
+2026-03-24 10:00:01 [INFO    ] artifactory.client: DRY RUN: would GET http://<RT_URL>/artifactory/api/system/ping
 ...
 ```
 
@@ -375,8 +375,8 @@ python main.py --build-name-prefix "teamA-"
 ### Pass credentials entirely via flags / env vars (no credentials.py needed)
 
 ```bash
-ARTIFACTORY_PASSWORD="Password1!" \
-  python main.py --url http://172.16.1.128:8082 --username admin
+ARTIFACTORY_PASSWORD="password" \
+  python main.py --url http://<RT_URL> --username admin
 ```
 
 ---
@@ -406,7 +406,7 @@ python main.py --config my_config.json
 
 ```json
 {
-  "url": "http://172.16.1.128:8082",
+  "url": "http://<RT_URL>",
   "username": "admin",
   "jfrog_cli_name": "my-server",
   "repo_types": ["docker", "npm", "pypi", "maven"],
@@ -448,10 +448,10 @@ The script cannot find your Artifactory password. Fix with one of:
 
 ```bash
 # Option 1 — fill in credentials.py
-echo 'ARTIFACTORY_PASSWORD = "Password1!"' >> credentials.py
+echo 'ARTIFACTORY_PASSWORD = "password"' >> credentials.py
 
 # Option 2 — set env var
-export ARTIFACTORY_PASSWORD="Password1!"
+export ARTIFACTORY_PASSWORD="password"
 ```
 
 ---
