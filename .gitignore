@@ -1,0 +1,24 @@
+# Credentials — never commit this
+credentials.py
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# JFrog / build artifacts
+.jfrog/
+.npmrc
+node_modules/
+package-lock.json
+package.json
+
+# Generic test artifacts created at runtime
+generic-artifact-*.txt
+
+# Logs
+*.log
